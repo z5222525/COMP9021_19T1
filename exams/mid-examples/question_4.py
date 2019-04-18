@@ -126,12 +126,5 @@ def second_sieve_of_primes_up_to(n):
     return sieve
 
 if __name__ == '__main__':
-    # import doctest
-
-    # doctest.testmod()
-    # f(2, 2)
-    # f(1, 1232553)
-
-    set1 = set(get_primes(1232553))
-    set2 = set(second_sieve_of_primes_up_to(1232553))
-    print(set2 - set1)
+    import doctest
+    doctest.testmod()
