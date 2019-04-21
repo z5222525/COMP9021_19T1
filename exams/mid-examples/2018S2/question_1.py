@@ -62,6 +62,7 @@ def f(arg_for_seed, nb_of_elements, max_element):
     print('Here is L:', L)
     R = []
     # Insert your code here
+
     print('The decomposition of L into increasing sequences,')
     print('    with consecutive duplicates removed, is:\n   ', R)
 

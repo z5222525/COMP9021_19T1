@@ -53,6 +53,7 @@ def f(letters):
     dictionary = 'dictionary.txt'
     solutions = []
     # Insert your code here
+
     if not solutions:
         print('There is no solution')
     else:
