@@ -25,14 +25,12 @@ def f(n):
     40 factorial is 815915283247897734345611269596115894272000000000
     The last nonzero digit in 40 factorial is 2
     '''
-
-    m = factorial(n)
-
-    while m!=0:
-        m,a = divmod(m,10)
-        if a!=0:
+    value = factorial(n)
+    print(f'{n} factorial is {value}')
+    for e in reversed(str(value)):
+        if e !='0':
+            print(f'The last nonzero digit in {n} factorial is {e}')
             break
-    print(f"The last nonzero digit in 30 factorial is {a}")
 
 if __name__ == '__main__':
     import doctest

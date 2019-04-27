@@ -37,14 +37,15 @@ def f(arg_for_seed, nb_of_elements, max_element):
     seed(arg_for_seed)
     L = [randint(0,max_element) for _ in range(nb_of_elements)]
     print ('Here is L:',L)
-    from collections import defaultdict
-    result = defaultdict(int)
-    for e in L:
-        str_e = str(e)
-        result[str_e[0]] +=1
-    if len(result):
-        for key in sorted(result.keys()):
-            print(f"result[key] element starts with {{key}}")
+    if L:
+        new_list = [0] * 9
+        for e in L:
+            new_list[int(str(e)[0]) - 1] +=1
+        for i in range(0,9):
+            if new_list[i] > 1:
+                print(f'{new_list[i]} elements start with {i+1}')
+            elif new_list[i]:
+                print(f'{new_list[i]} element starts with {i+1}')
 
 
 if __name__ == '__main__':
