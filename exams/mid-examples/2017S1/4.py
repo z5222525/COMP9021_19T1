@@ -1,6 +1,16 @@
 import sys
 from math import sqrt
 
+def get_all_divisor(n):
+    if n == 1:
+        return [1]
+    result = []
+    for i in range(2, int(sqrt(n)) + 1):
+        if n % i == 0:
+            result.append(i)
+            result.append(n // i)
+    return result
+
 def f(n):
     '''
     A number n is deficient if the sum of its proper divisors,
@@ -25,6 +35,11 @@ def f(n):
     48 is not deficient
     '''
     #input your code
+    divisors = set(get_all_divisor(n))
+    if sum(divisors) < n:
+        print(f"{n} is deficient")
+    else:
+        print(f"{n} is deficient")
 
 def g(a, b):
     '''
@@ -42,8 +57,12 @@ def g(a, b):
     5010 and 5574 are not amicable.
     
     '''
-
-
+    a_divisors = set(get_all_divisor(a))
+    b_divisors = set(get_all_divisor(b))
+    if sum(a_divisors) == b and sum(b_divisors) == a:
+        print(f"{a} and {b} are amicable.")
+    else:
+        print(f"{a} and {b} are not amicable.")
 
 if __name__ == '__main__':
     import doctest

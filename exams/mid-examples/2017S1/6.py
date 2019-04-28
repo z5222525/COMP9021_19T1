@@ -9,6 +9,7 @@
 
 import sys
 
+
 def f(a, b):
     '''
     Finds all numbers i and j with a <= i <= j <= b such that
@@ -45,7 +46,18 @@ def f(a, b):
     72 * 95 = 6840 is a solution
     74 * 85 = 6290 is a solution
     '''
+    for i in range(a, b + 1):
+        for j in range(a, b + 1):
+            k = i * j
+            if i <= j and len(set(str(i)))  == len(str(i))\
+                    and len(set(str(j)))  == len(str(j))\
+                    and len(set(str(k)))  == len(str(k)) \
+                    and len(set(str(i) + str(j) + str(k))) == len(str(i) + str(j) + str(k)):
+
+                print(f"{i} * {j} = {k} is a solution")
+
 
 if __name__ == '__main__':
     import doctest
+
     doctest.testmod()

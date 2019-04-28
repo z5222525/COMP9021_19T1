@@ -28,6 +28,9 @@ def f(filename):
     The longest word has 12 character(s).
     '''
 #input your code
+    with open(filename,"r") as file:
+        lines = file.readlines()
+        print(lines)
 
 
 if __name__ == '__main__':
