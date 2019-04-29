@@ -25,28 +25,27 @@ def f(word):
     desired_substring = ''
     # Insert your code here
     if word:
-        if len(word) == 1:
-            print()
-        else:
-            first = word[0]
-            temp_string = ""
-            # first = b
-            for second in word[1:]:
-                # second = a
-                if ord(first) + 1 == ord(second):
-                    temp_string += first
-                else:
-                    temp_string = ""
-                first= second
-                if desired_length < len(temp_string):
-                    desired_length = len(temp_string)
-                    desired_substring = temp_string
+        desired_length = 1
+        temp_substring = word[0]
+        temp_length = 1
+        for i in range(1,len(word)):
+            if ord(temp_substring[-1]) + 1 == ord(word[i]):
+                temp_substring+=word[i]
+                temp_length +=1
+            else:
+                desired_length = max(temp_length,desired_length)
+                if len(temp_substring) > len(desired_substring):
+                    desired_substring = temp_substring
 
-
+                temp_length = 1
+                temp_substring = word[i]
+                
+        desired_length = max(temp_length,desired_length)
+        if len(temp_substring) > len(desired_substring):
+            desired_substring = temp_substring
     print(f'The longest substring of consecutive letters has a length of {desired_length}.')
     print(f'The leftmost such substring is {desired_substring}.')
 
 if __name__ == '__main__':
-    # import doctest
-    # doctest.testmod()
-    f('ababcuvwaba')
+    import doctest
+    doctest.testmod()

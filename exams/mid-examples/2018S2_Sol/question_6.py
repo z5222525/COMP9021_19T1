@@ -3,11 +3,13 @@ You might find the zip() function useful, though you can also do without it.
 '''
 
 from random import randrange, seed
-
+from collections import Counter
+import itertools
 
 
 def display(square, size):
     print('\n'.join(' '.join(f'{x:{size}}' for x in row) for row in square))
+
 
 def f(for_seed, n, upper_bound):
     '''
@@ -21,13 +23,6 @@ def f(for_seed, n, upper_bound):
     3 3 0
     2 4 3
     3 2 3
-
-    3 3 0
-    2 4 3
-    3 2 3
-
-
-
     It is not a good square because it contains duplicates, namely: 2 3
     >>> f(0, 6, 50)
     Here is the square: 
@@ -75,42 +70,30 @@ def f(for_seed, n, upper_bound):
     
     '''
     seed(for_seed)
-    square = [[randrange(upper_bound) for _ in range (n)] for _ in range(n)]
+    square = [[randrange(upper_bound) for _ in range(n)] for _ in range(n)]
     duplicates = set()
-    ordered_square = [[]]
+    ordered_square = []
     print('Here is the square: ')
     display(square, len(str(upper_bound)))
     # Insert your code here
-    from itertools import chain
+    duplicates = set([k for k, v in Counter(itertools.chain(*square)).items() if v > 1])
 
-    row_length = len(square)
-    column_length = len(square[0])
-    new_exists = set([])
-    for row in range(row_length):
-        for column in  range(column_length):
-            #     3 3 0
-            #     2 4 3
-            #     3 2 3
-            if square[row][column] not in new_exists:
-                new_exists.add(square[row][column])
-            else:
-                duplicates.add(square[row][column])
-
-    import numpy as np
-    new_square = np.sort(np.rot90(np.sort(np.array(square), axis=0),axis=0))
-    print(new_square)
-
+    if not duplicates:
+        length = len(square)
+        square = sorted(itertools.chain(*square))
+        ordered_square = [square[i:i + length] for i in range(0,len(square),length)]
+        ordered_square = zip(*ordered_square)
 
     if duplicates:
-        print('It is not a good square because it contains duplicates, namely: ', end = '')
+        print('It is not a good square because it contains duplicates, namely: ', end='')
         print(' '.join(str(e) for e in sorted(duplicates)))
     else:
         print('It is a good square.')
         print('Ordering the elements from left to right column, from top to bottom, yields:')
         display(ordered_square, len(str(upper_bound)))
 
-    
+
 if __name__ == '__main__':
-    # import doctest
-    # doctest.testmod()
-    f(0, 2, 50)
+    import doctest
+
+    doctest.testmod()

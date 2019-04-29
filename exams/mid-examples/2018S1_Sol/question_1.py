@@ -34,24 +34,19 @@ def f(arg_for_seed, nb_of_elements, max_element):
     seed(arg_for_seed)
     L = [randint(0, max_element) for _ in range(nb_of_elements)]
     print('Here is L:', L)
-
-    new_list = []
-    if L :
-
-        # [6,3,6]
-        new_sub_list = []
-        for item in L:
-            if item % 2 == 0:
-                new_sub_list.append(item)
-            else:
-                if new_sub_list:
-                    new_list.append(new_sub_list)
-                new_sub_list = []
-        if new_sub_list:
-            new_list.append(new_sub_list)
-
-    print(f"The decomposition of L into longest sublists of even numbers is: {new_list}")
-
+    R = []
+    new_set = []
+    for e in L:
+        if e % 2 == 0:
+             new_set.append(e)
+        else:
+            if new_set:
+                R.append(new_set)
+            new_set = []
+    if new_set:
+        R.append(new_set)
+    # Insert your code here
+    print('The decomposition of L into longest sublists of even numbers is:', R)    
 
 
 if __name__ == '__main__':

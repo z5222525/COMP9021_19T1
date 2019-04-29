@@ -74,20 +74,11 @@ def f(height):
                              0
     '''
     # Insert your code here
-    lines = []
-    for index in range(height + 1):
-        line = ""
-        for line_index in range(index):
-            line =line + str(line_index % 10)
-        if line:
-            lines.append(line[1:][::-1] + line)
-
-    reversed_lines = list(reversed(lines))
-
-    for index in range(len(lines)):
-        print(" "*index + reversed_lines[index])
-
-
+    n = height
+    while n > 0:
+        values = [str(i % 10) for i in range(n)]
+        print (" " * (height - n) + "".join(reversed(values[1:])) + "".join(values))
+        n -=1
 if __name__ == '__main__':
     import doctest
     doctest.testmod()

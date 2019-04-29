@@ -40,6 +40,20 @@ print()
 #   that is, elements e such that e // 5 == 2
 # - intervals[3] to record the number of elements between 15 and 19
 #   that is, elements e such that e // 5 == 3
+# 最简单的版本
+result = [0,0,0,0]
+for item in L:
+    if 0 <= item<= 4:
+        result[0] +=1
+    if 5 <= item <= 9:
+        result[1] += 1
+    if 10 <= item<= 14:
+        result[2] +=1
+    if 15 <= item <= 19:
+        result[3] += 1
+
+
+# 马丁提供的版本
 intervals = [0] * 4
 for e in L:
     intervals[e // 5] += 1

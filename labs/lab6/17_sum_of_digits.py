@@ -10,19 +10,44 @@ the number of ways of selecting digits from available_digits that sum up to desi
 import sys
 
 
-def solve(available_digits, desired_sum):
-    if desired_sum < 0:
+
+
+
+def solve(number_string = "1                  2345678", n = 9):
+
+    if not number_string:
         return 0
+    if n ==0:
+        return 1
+    if n <0:
+        return 0
+
+    no_exists = solve(number_string[1:], n)
+    exists = solve(number_string[1:], n -int(number_string[0]))
+
+
+    left = solve(number_string[1:], n)
+    right = solve(number_string[1:], n -int(number_string[0]))
+
+    return left + right
+
+    return no_exists + exists
+
+
+
+    # solve(number_string[1:], n) + solve(number_string[1:], n -int(number_string[0]))
+
+
+def solve(available_digits, desired_sum):
+    if desired_sum < 0: return 0
     if available_digits == 0:
-        if desired_sum == 0:
-            return 1
+        if desired_sum == 0: return 1
         return 0
     # Either take the last digit d form available_digits
     # and try to get desired_sum - d from the remaining digits,
     # or do not take the last digit and try to get desired_sum
     # from the remaining digits.
-    return solve(available_digits // 10, desired_sum) +\
-                                  solve(available_digits // 10, desired_sum - available_digits % 10)
+    return solve(available_digits // 10, desired_sum) + solve(available_digits // 10, desired_sum - available_digits % 10)
 
 try:
     available_digits = abs(int(input('Input a number that we will use as available digits: ')))

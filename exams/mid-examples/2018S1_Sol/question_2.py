@@ -32,15 +32,14 @@ def f(n):
     n_factorial = factorial(n)
     nb_of_threes = 0
     # Insert your code here
-    print(f"{n}! is {n_factorial}")
-
-    count_3 = str(n_factorial).count("3")
-    if count_3 == 0:
-        print(f"There is no 3 in {n_factorial}")
-    elif count_3 == 1:
-        print(f"There is one 3 in {n_factorial}")
+    count = str(n_factorial).count('3')
+    print(f'{n}! is {n_factorial}')
+    if count == 0:
+        print(f'There is no 3 in {n_factorial}')
+    elif count == 1:
+        print(f'There is one 3 in {n_factorial}')
     else:
-        print(f"There are {count_3} 3's in {n_factorial}")
+        print(f"There are {count} 3's in {n_factorial}")
 
 if __name__ == '__main__':
     import doctest

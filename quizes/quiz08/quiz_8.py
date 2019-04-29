@@ -24,6 +24,9 @@ class Polynomial:
         result = defaultdict(int)
 
         factors = {"-": -1, "+": 1}
+
+        # x^3 - x + 4
+
         # not None
         if polynomial:
             split_list = polynomial.split(" ")
@@ -51,6 +54,9 @@ class Polynomial:
                 result[power] = factor
 
         self.polynomial = result
+
+        print(self.polynomial)
+
         self.max_degree = 0
         if result:
             self.max_degree = max(result.keys())
@@ -181,9 +187,12 @@ def test():
 
 
 if __name__ == '__main__':
-    import doctest
+    # import doctest
 
-    doctest.testmod()
+    # doctest.testmod()
+
+    p1 = Polynomial('2x^2 - 1')
+    print(p1)
 
     #p = Polynomial('x')
     # print(p + Polynomial('-x'))

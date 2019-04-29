@@ -1,3 +1,5 @@
+from itertools import groupby
+
 
 def remove_consecutive_duplicates(word):
     '''
@@ -17,12 +19,21 @@ def remove_consecutive_duplicates(word):
     'abacacd'
     '''
     # Insert your code here (the output is returned, not printed out)               
+    result = ''
+    if word:
+        # first method
+        result = word[0]
+        for char in word[1:]:
+            if result[-1] != char:
+                result += char
 
-    return "abc"
+        # second method
+        result = ''.join([k for k, g in groupby(word)])
+
+    return result
+
 
 if __name__ == '__main__':
     import doctest
+
     doctest.testmod()
-
-    remove_consecutive_duplicates('abcaaabbbcccabc')
-

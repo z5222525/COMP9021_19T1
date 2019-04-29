@@ -18,6 +18,22 @@ if not all(c.islower() for c in word):
 longest_length = 0
 start = None
 current_start = 0
+
+test_str = "abcd"
+
+max_length = 0
+
+for index1 in range(len(test_str)):
+    temp_length = 0
+    for index2 in range(1,len(test_str)):
+        current_start = ord(test_str[index1])
+        if current_start + index2 == ord(test_str[index2]):
+            temp_length +=1
+            continue
+        else:
+            max_length = max(temp_length,max_length)
+            break
+
 while current_start < len(word) - longest_length:
     current_length = 1
     last_in_sequence = ord(word[current_start])

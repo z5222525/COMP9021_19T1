@@ -72,25 +72,20 @@ def check_out_square_and_fix_if_corrupted(square):
     good_square = False
     corrupted_square = False
     # Insert your code here
-
-    a = [x for x in range(1,n ** 2 + 1)]
-    from itertools import  chain
-    if set(a) == set(chain(*square)):
+    set1 = set([x for row in square for x in row])
+    set2 = set([x for x in range(1,n ** 2 + 1)])
+    set3 = set1 - set2
+    set4 = set2 - set1
+    if len(set3) == 0:
         good_square = True
-
-
-    # 1  5  7
-    #      2  9  3
-    #      6  4  8
-    sub_set = set(a) - set(chain(*square))
-
-    if set(chain(*square)) - set(a) == set([0]) \
-            and len(sub_set) == 1:
-
-
-
-
+    else:
+        if set3 =={0} and len(set4) == 1:
             corrupted_square = True
+            value = list(set4)[0]
+            for i in range(len(square)):
+                for j in range(len(square[i])):
+                    if square[i][j] == 0:
+                        square[i][j] = value
                 
     if good_square:
         print('It is a good square.')
