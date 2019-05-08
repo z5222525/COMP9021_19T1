@@ -11,24 +11,27 @@ def sum_of_digits(input, n):
     left = sum_of_digits(input[1:], n - int(input[0]))
     right = sum_of_digits(input[1:], n)
     return left + right
-results = []
 
-def subnumbers_whose_digits_add_up_to_ext(number, sum_of_digits,current_result):
+
+def subnumbers_whose_digits_add_up_to_ext(number, sum_of_digits ,current_result,results):
     # REPLACE THE PREVIOUS LINE WITH YOUR CODE
     # 123456     11 - 6 -5 == 0
-
-
-    if sum_of_digits < 0:
-        return
-    if number == 0:
+    if number >= 0:
         if sum_of_digits == 0:
-            results.append(current_result)
+            results.add(current_result)
+            return
+    # 如果number = 2,sum of digits = 2
+    if number == sum_of_digits:
+        results.add(current_result * 10 + number)
+        return
+    # sum of digits = -1 or number == 0
+    if sum_of_digits < 0 or number == 0:
         return
 
     a, b = divmod(number, 10)
     # a = 123,b =4
-    subnumbers_whose_digits_add_up_to_ext(a, sum_of_digits - b,current_result * 10 + b)
-    subnumbers_whose_digits_add_up_to_ext(a, sum_of_digits,current_result)
+    subnumbers_whose_digits_add_up_to_ext(a, sum_of_digits - b,current_result * 10 + b,results)
+    subnumbers_whose_digits_add_up_to_ext(a, sum_of_digits,current_result,results)
 
     # subnumbers_whose_digits_add_up_to(1234, 5)
     #               None
@@ -73,13 +76,13 @@ def subnumbers_whose_digits_add_up_to(number, sum_of_digits):
 4321, 12331, 12421, 13321]
     '''
 
-    subnumbers_whose_digits_add_up_to_ext(number, sum_of_digits, 0)
-
-    return results
-
-
+    results = set([])
+    subnumbers_whose_digits_add_up_to_ext(int(str(number)[::-1]), sum_of_digits, 0,results)
+    return sorted(results)
 
 
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
+    # print(subnumbers_whose_digits_add_up_to(123, 6))
+    # print(sorted(subnumbers_whose_digits_add_up_to(123454321, 10)))
