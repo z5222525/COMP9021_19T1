@@ -5,7 +5,18 @@ Will be tested with a at equal equal to 2 and b at most equal to 10_000_000.
 
 import sys
 from math import sqrt
+from itertools import compress
 
+
+# 利用byte求素数
+def get_primes_3(n):
+    """ Returns  a list of primes < n for n > 2 """
+    sieve = bytearray([True]) * (n // 2)
+    for i in range(3, int(sqrt(n)) + 1, 2):
+        if sieve[i // 2]:
+            sieve[i * i // 2::i] = bytearray((n - i * i - 1) // (2 * i) + 1)
+
+    return [*compress(range(3, n, 2), sieve[1:])]
 
 def f(a, b):
     '''
@@ -27,6 +38,18 @@ def f(a, b):
     There are 38194 prime numbers between 123 and 456789.
     '''
     number_of_primes_at_most_equal_to_b = 0
+
+    if a == 2:
+        number_of_primes_at_most_equal_to_b +=1
+    # a,b = 2,3
+    primes = get_primes_3(b + 1)
+
+    for prime in primes:
+        if a <= prime < b + 1:
+            number_of_primes_at_most_equal_to_b += 1
+        elif prime > b + 1:
+            break
+
     # Insert your code here
     if not number_of_primes_at_most_equal_to_b:
         print(f'There is no prime number beween {a} and {b}.')

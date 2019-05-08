@@ -28,6 +28,11 @@ def f(n):
     8 bits are set to 1 in the binary representation of 9871.
     '''
     # Insert your code here
+    binary = bin(n)[2:]
+    count = binary.count("1")
+    print(f"{n} in binary reads as: {binary}.")
+
+
 
 
 if __name__ == '__main__':

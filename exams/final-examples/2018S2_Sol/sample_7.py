@@ -70,6 +70,8 @@ def find_word(filename, word):
 
 def find_word_horizontally(grid, word):
     location = None
+    numpy.array(['1',"2","3"])
+    ['1',"2","3"]
     for y_dim in range(len(grid)):
         line = ''.join(grid[y_dim].tolist())
         index = line.find(word)

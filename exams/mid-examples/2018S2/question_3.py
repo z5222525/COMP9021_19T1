@@ -1,6 +1,24 @@
+from itertools import compress
+from math import sqrt
+from collections import defaultdict
 '''
 Will be tested with n at least equal to 2, and "not too large".
 '''
+
+
+# 利用byte求素数
+def get_primes_3(n):
+    """ Returns  a list of primes < n for n > 2 """
+    if n < 2:
+        return []
+    if n == 2:
+        return [2]
+    sieve = bytearray([True]) * (n // 2)
+    for i in range(3, int(sqrt(n)) + 1, 2):
+        if sieve[i // 2]:
+            sieve[i * i // 2::i] = bytearray((n - i * i - 1) // (2 * i) + 1)
+
+    return [2, *compress(range(3, n, 2), sieve[1:])]
 
 def f(n):
     '''
@@ -42,7 +60,25 @@ def f(n):
        45100 = 2^2 x 5^2 x 11 x 41
     '''
     factors = {}
-    # Insert your code here
+    # Insert your code her
+
+    primes = get_primes_3(100)
+    m = n
+    for prime in primes:
+        while m!=0 or m!=1:
+            a,b = divmod(m,prime)
+            if b == 0:
+                if prime in factors:
+                    factors[prime] +=1
+                else:
+                    factors[prime] = 1
+                m = a
+            else:
+                break
+        else:
+            break
+
+
     print(f'The decomposition of {n} into prime factors reads:')
     print('  ', n, '=', end = ' ')
     print(' x '.join(factors[x] == 1 and str(x) or f'{x}^{factors[x]}'for x in sorted(factors)))
