@@ -1,4 +1,50 @@
 
+def sum_of_digits(input, n):
+    if not input:
+        if not n:
+            return 1
+        return 0
+    if len(input) == 1 and int(input) == n:
+        return 1
+    if len(input) == 1 and int(input) == n:
+        return 0
+    left = sum_of_digits(input[1:], n - int(input[0]))
+    right = sum_of_digits(input[1:], n)
+    return left + right
+
+
+def subnumbers_whose_digits_add_up_to_ext(number, sum_of_digits ,current_result,results):
+    # REPLACE THE PREVIOUS LINE WITH YOUR CODE
+    # 123456     11 - 6 -5 == 0
+    if number >= 0:
+        if sum_of_digits == 0:
+            results.add(current_result)
+            return
+    # 如果number = 2,sum of digits = 2
+    if number == sum_of_digits:
+        results.add(current_result * 10 + number)
+        return
+    # sum of digits = -1 or number == 0
+    if sum_of_digits < 0 or number == 0:
+        return
+
+    a, b = divmod(number, 10)
+    # a = 123,b =4
+    subnumbers_whose_digits_add_up_to_ext(a, sum_of_digits - b,current_result * 10 + b,results)
+    subnumbers_whose_digits_add_up_to_ext(a, sum_of_digits,current_result,results)
+
+    # subnumbers_whose_digits_add_up_to(1234, 5)
+    #               None
+    # Nne                           1
+    #  None, 2                  None,           2
+    #   None,3  None,3           None,    3       None,   3
+
+
+# POSSIBLY DEFINE OTHER
+
+
+# POSSIBLY DEFINE OTHER
+
 def subnumbers_whose_digits_add_up_to(number, sum_of_digits):
     '''
     You can assume that "number" consists of digits not equal to 0
@@ -29,12 +75,14 @@ def subnumbers_whose_digits_add_up_to(number, sum_of_digits):
 1252, 1342, 1351, 1432, 1441, 1531, 2332, 2341, 2431, 2521, 3421, \
 4321, 12331, 12421, 13321]
     '''
-    return []
-    # REPLACE THE PREVIOUS LINE WITH YOUR CODE
 
-# POSSIBLY DEFINE OTHER FUNCTIONS
+    results = set([])
+    subnumbers_whose_digits_add_up_to_ext(int(str(number)[::-1]), sum_of_digits, 0,results)
+    return sorted(results)
 
 
 if __name__ == '__main__':
     import doctest
     doctest.testmod()
+    # print(subnumbers_whose_digits_add_up_to(123, 6))
+    # print(sorted(subnumbers_whose_digits_add_up_to(123454321, 10)))

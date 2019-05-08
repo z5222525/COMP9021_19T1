@@ -23,9 +23,21 @@ def rectangle(width, height):
     ijklmnopqrstuvwxy
     ponmlkjihgfedcbaz
     '''
-    print()
+    # print()
     # REPLACE THE PREVIOUS LINE WITH YOUR CODE
+    # 1.两种,边打印，边输出 2.放到list 一起打印
+    start = ord('a')
+    total = 0
+    for height_index in range(height):
+        line = ""
+        for width_index in range(width):
+            line += chr(start + total % 26)
+            total += 1
 
+        if height_index % 2 == 0:
+            print(line)
+        else:
+            print(line[::-1])
 
 if __name__ == '__main__':
     import doctest

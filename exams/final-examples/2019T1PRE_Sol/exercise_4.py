@@ -63,9 +63,19 @@ def words(text):
     Words of length 11:
         ['inspiration', 'worldliness']
     '''
-    print()
+    # print()
     # REPLACE THE PREVIOUS LINE WITH YOUR CODE
+    if text:
+        lines = text.replace(",","").replace(";","").replace(".","").replace("?","").replace(":","").split()
 
+        words = defaultdict(set)
+        for line in lines:
+            words[len(line)].add(line.lower())
+
+        keys = words.keys()
+        for length in sorted(keys):
+            print(f"Words of length {length}:")
+            print(f"    {sorted(words[length])}")
 
 if __name__ == '__main__':
     import doctest

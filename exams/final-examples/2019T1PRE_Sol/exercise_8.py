@@ -28,23 +28,9 @@ def number_of_words_in_dictionary(word_1, word_2):
     '''
     # print()
     # REPLACE THE PREVIOUS LINE WITH YOUR CODE
-    with open(dictionary_file) as file:
 
-        lines = [line.strip() for line in file.readlines()]
 
-        if word_1 == word_2:
-            if word_1 in lines:
-                print(f"{word_1} is in dictionary.")
-            else:
-                print(f"Could not find {word_1} in dictionary.")
-        else:
-            if word_1 in lines and word_2 in lines:
-                count = abs(lines.index(word_2) - lines.index(word_1)) + 1
-                print(f"Found {count} words between {word_1} and {word_2} in dictionary.")
-            else:
-                print(f"Could not find at least one of {word_1} and {word_2} in dictionary.")
-
+               
 if __name__ == '__main__':     
     import doctest
     doctest.testmod()
-    #number_of_words_in_dictionary('company', 'company')

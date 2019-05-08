@@ -21,7 +21,19 @@ def rearrange(number):
     '''
     # return -1
     # REPLACE THE PREVIOUS LINE WITH YOUR CODE
-    return int("".join(sorted(str(number).replace("0",""))))
+    # 1.整数 str
+    # 2. while
+    # def number_calculate(n):
+    #     m = n
+    #     while m!=0:
+    #         m, a = divmod(m, 10)
+    #         print(m,a)
+    # count()
+    # str(number).count('3')
+
+
+    # return
+    return int("".join(sorted(str(number).replace("0",''))))
 
 
 if __name__ == '__main__':

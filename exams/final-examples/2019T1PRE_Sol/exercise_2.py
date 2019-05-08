@@ -1,6 +1,5 @@
-from itertools import zip_longest
 
-def rearrange(L, from_first=True):
+def rearrange(L, from_first = True):
     '''
     Returns a new list consisting of:
     * in case "from_first" is True:
@@ -41,26 +40,52 @@ def rearrange(L, from_first=True):
     >>> rearrange(L), L
     ([10, 70, 20, 60, 30, 50, 40], [10, 20, 30, 40, 50, 60, 70])
     '''
-
+    # return []
     # REPLACE THE PREVIOUS LINE WITH YOUR CODE
+    #
     result = []
     if L:
         if from_first:
-            for i in range(len(L)):
-                if i % 2 == 0:
-                    result.append(L[i // 2])
+            for index in range(len(L)):
+                # index  = 2
+                # a = 1
+                a,b  = divmod(index,2)
+                # 奇数
+                # 偶数
+                #     >>> L = [10, 20, 30]
+                #     >>> rearrange(L), L
+                #     ([10, 30, 20], [10, 20, 30])
+                # index  = 0, 2
+                if b == 0:
+                    result.append(L[a])
+                # index  = 1
                 else:
-                    result.append(L[-((i + 1) // 2)])
-        else:
-            for i in range(len(L)):
-                if i % 2 == 0:
-                    result.append(L[-(i + 2) // 2])
-                else:
-                    result.append(L[(i - 1) // 2])
+                    # index = 1,a = 0,b = 1
+                    result.append(L[0 -(a + 1)])
 
+        else:
+            for index in range(len(L)):
+                # index  = 2
+                # a = 1
+                a, b = divmod(index, 2)
+                # 奇数
+                # 偶数
+                #     >>> L = [10, 20, 30]
+                #     >>> rearrange(L), L
+                #     ([10, 30, 20], [10, 20, 30])
+                # index  = 0, 2
+                if b == 0:
+                    # index = 0,a = 0,b = 0
+                    # index = 2 a = 1,b = 0
+                    result.append(L[0 - (a + 1)])
+                # index  = 1
+                else:
+                    # index = 1,a = 0,b = 1
+                    #
+                    result.append(L[a])
     return result
 
 
 if __name__ == '__main__':
-    L = [10, 20, 30, 40, 50, 60, 70]
-    print(rearrange(L), L)
+    import doctest
+    doctest.testmod()
